@@ -5,6 +5,7 @@ import com.fcmb.SeerbitAPI.dto.AuthRequest;
 import com.fcmb.SeerbitAPI.dto.BaseDtoEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -13,6 +14,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 @RequiredArgsConstructor
+@PropertySource("classpath:env.properties")
 @Service
 public class SeerbitAPIServiceImpl implements SeerbitAPIService {
 
