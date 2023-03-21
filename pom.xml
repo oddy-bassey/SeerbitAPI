@@ -15,8 +15,14 @@
 	<description>A Springboot integration with SEERBIT API (Interview Assignment)</description>
 	<properties>
 		<java.version>17</java.version>
+		<jaxb.version>2.3.1</jaxb.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>1.0.2</version>
+		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>

@@ -16,10 +16,14 @@ public class AccountPerson {
     private String name;
     @NotBlank(message = "address cannot be empty!")
     private String address;
+    private String bankcode;
     private String accountnumber;
     private String mobile;
     private String country;
     private String idtype;
     private String idnumber;
     private String idexpiry;
+    private String occupation;
+    private String beneOccupation;
+    private String beneCustRelationship;
 }
