@@ -13,4 +13,5 @@ import lombok.NoArgsConstructor;
 public class Transaction {
     @NotBlank(message = "reference must be provided!")
     private String reference;
+    private String linkingreference;
 }

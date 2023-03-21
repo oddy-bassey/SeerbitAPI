@@ -7,7 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 
 @Data
 @AllArgsConstructor
@@ -15,7 +15,7 @@ import java.math.BigInteger;
 @Builder
 public class Order {
     @NotNull(message = "amount is required!")
-    private BigInteger amount;
+    private BigDecimal amount;
     private String description;
     private String reason;
     @NotNull(message = "currency is required!")

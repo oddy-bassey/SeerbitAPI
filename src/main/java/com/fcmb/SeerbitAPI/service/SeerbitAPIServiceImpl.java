@@ -1,46 +1,60 @@
 package com.fcmb.SeerbitAPI.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fcmb.SeerbitAPI.dto.AuthCredential;
-import com.fcmb.SeerbitAPI.dto.AuthRequest;
 import com.fcmb.SeerbitAPI.dto.BaseDtoEntity;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 
+@Slf4j
 @RequiredArgsConstructor
 @PropertySource("classpath:env.properties")
 @Service
 public class SeerbitAPIServiceImpl implements SeerbitAPIService {
 
     @Value("${seerbit.baseUrl}")
-    private final String BASE_URL;
+    private String BASE_URL;
 
     @Value("${seerbit.grantType}")
-    private final String GRANT_TYPE;
+    private String GRANT_TYPE;
 
     @Value("${seerbit.clientId}")
-    private final String CLIENT_ID;
+    private String CLIENT_ID;
 
     @Value("${seerbit.clientSecret}")
-    private final String CLIENT_SECRETE;
+    private String CLIENT_SECRETE;
 
+    private final ObjectMapper objectMapper;
     private final RestTemplate restTemplate;
 
     private AuthCredential authCredential;
 
     @Override
     public synchronized String getValidToken() {
-        if (authCredential == null) {
-            authCredential = (AuthCredential) authenticate().getBody();
-        }
-        if ((System.currentTimeMillis()-authCredential.getRequested_at()) >= authCredential.getExpires_in()) {
-            authCredential = (AuthCredential) authenticate().getBody();
+        try {
+            if (authCredential == null) {
+                log.info("Requesting token");
+                authCredential = objectMapper.readValue(authenticate().getBody().toString(), AuthCredential.class);
+                authCredential.setRequested_at(System.currentTimeMillis());
+            }
+            long expTime = (System.currentTimeMillis() - authCredential.getRequested_at());
+            if (expTime >= authCredential.getExpires_in()) {
+                log.info("Token expired, requesting new token");
+                authCredential = objectMapper.readValue(authenticate().getBody().toString(), AuthCredential.class);
+                authCredential.setRequested_at(System.currentTimeMillis());
+            }
+        } catch (Exception exception) {
+            throw new RuntimeException(exception);
         }
         return authCredential.getAccess_token();
     }
@@ -51,31 +65,33 @@ public class SeerbitAPIServiceImpl implements SeerbitAPIService {
         URI uri = null;
         try {
             uri = new URI(BASE_URL.concat("/auth"));
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e.getMessage());
+        } catch (URISyntaxException exception) {
+            log.error(exception.getMessage(), exception);
+            throw new RuntimeException(exception.getMessage());
         }
-        AuthRequest requestBody = AuthRequest.builder()
-                .grant_type(GRANT_TYPE)
-                .client_id(CLIENT_ID)
-                .client_secret(CLIENT_SECRETE)
-                .build();
+
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.add("grant_type", GRANT_TYPE);
+        params.add("client_id", CLIENT_ID);
+        params.add("client_secret", CLIENT_SECRETE);
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
-        HttpEntity<BaseDtoEntity> httpEntity = new HttpEntity<>(requestBody, httpHeaders);
+        HttpEntity<MultiValueMap<String, String>> httpEntity =  httpEntity = new HttpEntity<>(params, httpHeaders);
 
-        return restTemplate.exchange(uri, HttpMethod.POST, httpEntity, AuthCredential.class);
+        return restTemplate.exchange(uri, HttpMethod.POST, httpEntity, String.class);
     }
 
     @Override
-    public ResponseEntity<?> accountPayout(BaseDtoEntity requestBody) {
+    public ResponseEntity<?> payout(BaseDtoEntity requestBody) {
 
         URI uri = null;
         try {
             uri = new URI(BASE_URL.concat("/account/payout"));
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
+        } catch (URISyntaxException exception) {
+            log.error(exception.getMessage(), exception);
+            throw new RuntimeException(exception);
         }
 
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -83,25 +99,7 @@ public class SeerbitAPIServiceImpl implements SeerbitAPIService {
 
         HttpEntity<BaseDtoEntity> httpEntity = new HttpEntity<>(requestBody, httpHeaders);
 
-        return restTemplate.exchange(uri, HttpMethod.POST, httpEntity, Object.class);
-    }
-
-    @Override
-    public ResponseEntity<?> walletPayout(BaseDtoEntity requestBody) {
-
-        URI uri = null;
-        try {
-            uri = new URI(BASE_URL.concat("/account/payout"));
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
-
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("Authorization", "Bearer " + getValidToken());
-
-        HttpEntity<BaseDtoEntity> httpEntity = new HttpEntity<>(requestBody, httpHeaders);
-
-        return restTemplate.exchange(uri, HttpMethod.POST, httpEntity, Object.class);
+        return restTemplate.exchange(uri, HttpMethod.POST, httpEntity, String.class);
     }
 
     @Override
@@ -110,8 +108,9 @@ public class SeerbitAPIServiceImpl implements SeerbitAPIService {
         URI uri = null;
         try {
             uri = new URI(BASE_URL.concat("/payout/create"));
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
+        } catch (URISyntaxException exception) {
+            log.error(exception.getMessage(), exception);
+            throw new RuntimeException(exception);
         }
 
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -119,6 +118,6 @@ public class SeerbitAPIServiceImpl implements SeerbitAPIService {
 
         HttpEntity<BaseDtoEntity> httpEntity = new HttpEntity<>(requestBody, httpHeaders);
 
-        return restTemplate.exchange(uri, HttpMethod.POST, httpEntity, Object.class);
+        return restTemplate.exchange(uri, HttpMethod.POST, httpEntity, String.class);
     }
 }

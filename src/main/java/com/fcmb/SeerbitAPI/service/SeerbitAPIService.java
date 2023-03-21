@@ -7,7 +7,6 @@ public interface SeerbitAPIService {
 
     String getValidToken();
     ResponseEntity<?> authenticate();
-    ResponseEntity<?> accountPayout(BaseDtoEntity requestBody);
-    ResponseEntity<?> walletPayout(BaseDtoEntity requestBody);
+    ResponseEntity<?> payout(BaseDtoEntity requestBody);
     ResponseEntity<?> cashPickUp(BaseDtoEntity requestBody);
 }
