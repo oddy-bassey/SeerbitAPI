@@ -14765,3 +14765,30 @@ Caused by: java.lang.NoSuchMethodError: 'io.github.classgraph.ClassGraph io.gith
 2023-03-21T14:34:01.611+01:00  INFO 224687 --- [main] .f.S.s.SeerbitApiServiceIntegrationTests : No active profile set, falling back to 1 default profile: "default"
 2023-03-21T14:34:02.989+01:00  INFO 224687 --- [main] .f.S.s.SeerbitApiServiceIntegrationTests : Started SeerbitApiServiceIntegrationTests in 1.593 seconds (process running for 2.26)
 2023-03-21T14:34:03.472+01:00  INFO 224687 --- [main] c.f.S.service.SeerbitAPIServiceImpl      : Requesting token
+2023-03-21T14:56:53.421+01:00  INFO 226080 --- [main] .f.S.s.SeerbitApiServiceIntegrationTests : Starting SeerbitApiServiceIntegrationTests using Java 19 with PID 226080 (started by revoltcode in /home/revoltcode/Documents/SimplifySynergy/SeerbitAPI)
+2023-03-21T14:56:53.422+01:00  INFO 226080 --- [main] .f.S.s.SeerbitApiServiceIntegrationTests : No active profile set, falling back to 1 default profile: "default"
+2023-03-21T14:56:54.861+01:00  INFO 226080 --- [main] .f.S.s.SeerbitApiServiceIntegrationTests : Started SeerbitApiServiceIntegrationTests in 1.651 seconds (process running for 2.287)
+2023-03-21T14:56:55.334+01:00  INFO 226080 --- [main] c.f.S.service.SeerbitAPIServiceImpl      : Requesting token
+2023-03-21T14:57:04.688+01:00  INFO 226311 --- [main] c.fcmb.SeerbitAPI.SeerbitApiApplication  : Starting SeerbitApiApplication using Java 19 with PID 226311 (/home/revoltcode/Documents/SimplifySynergy/SeerbitAPI/target/classes started by revoltcode in /home/revoltcode/Documents/SimplifySynergy/SeerbitAPI)
+2023-03-21T14:57:04.690+01:00  INFO 226311 --- [main] c.fcmb.SeerbitAPI.SeerbitApiApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-03-21T14:57:05.237+01:00  INFO 226311 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-21T14:57:05.243+01:00  INFO 226311 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-21T14:57:05.243+01:00  INFO 226311 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2023-03-21T14:57:05.289+01:00  INFO 226311 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-21T14:57:05.289+01:00  INFO 226311 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 568 ms
+2023-03-21T14:57:05.834+01:00  INFO 226311 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-21T14:57:05.841+01:00  INFO 226311 --- [main] c.fcmb.SeerbitAPI.SeerbitApiApplication  : Started SeerbitApiApplication in 1.446 seconds (process running for 1.761)
+2023-03-21T14:58:01.716+01:00  INFO 226311 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-21T14:58:01.716+01:00  INFO 226311 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-21T14:58:01.717+01:00  INFO 226311 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-03-21T14:59:15.485+01:00  WARN 226311 --- [http-nio-8080-exec-2] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.fcmb.SeerbitAPI.controller.SeerBitAPIRestController
+2023-03-21T14:59:15.579+01:00  INFO 226311 --- [http-nio-8080-exec-2] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 116 ms
+2023-03-21T15:16:17.670+01:00  INFO 229016 --- [main] c.fcmb.SeerbitAPI.SeerbitApiApplication  : Starting SeerbitApiApplication using Java 17.0.5 with PID 229016 (/home/revoltcode/Documents/SimplifySynergy/SeerbitAPI/target/classes started by revoltcode in /home/revoltcode/Documents/SimplifySynergy/SeerbitAPI)
+2023-03-21T15:16:17.672+01:00  INFO 229016 --- [main] c.fcmb.SeerbitAPI.SeerbitApiApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-03-21T15:16:18.237+01:00  INFO 229016 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-21T15:16:18.243+01:00  INFO 229016 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-21T15:16:18.243+01:00  INFO 229016 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2023-03-21T15:16:18.298+01:00  INFO 229016 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-21T15:16:18.298+01:00  INFO 229016 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 599 ms
+2023-03-21T15:16:18.823+01:00  INFO 229016 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-21T15:16:18.829+01:00  INFO 229016 --- [main] c.fcmb.SeerbitAPI.SeerbitApiApplication  : Started SeerbitApiApplication in 1.495 seconds (process running for 1.903)

@@ -5,6 +5,7 @@ import com.fcmb.SeerbitAPI.dto.RequestDtoEntity;
 import com.fcmb.SeerbitAPI.dto.Response;
 import com.fcmb.SeerbitAPI.service.SeerbitAPIService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,11 @@ import java.util.Optional;
 public class SeerBitAPIRestController {
 
     private final SeerbitAPIService seerbitAPIService;
+
+    @GetMapping
+    public ResponseEntity<String> welcome () {
+        return new ResponseEntity<>("SEERBIT Remittance Payout API Integration.", HttpStatus.OK);
+    }
 
 //    @ApiOperation(value = "Enables funds transfer to bank accounts or wallets in Nigeria")
 //    @ApiResponses(value = { @ApiResponse(code = 200, message = "OK"), @ApiResponse(code = 400, message = "Bad Request"),
