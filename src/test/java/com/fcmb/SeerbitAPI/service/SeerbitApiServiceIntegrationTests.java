@@ -16,6 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.math.BigDecimal;
@@ -53,8 +54,8 @@ class SeerbitApiServiceIntegrationTests {
 	@Test
 	void authenticate() {
 		try {
-			ResponseEntity<?> responseEntity = seerbitAPIService.authenticate();
-			AuthCredential credential = objectMapper.readValue(responseEntity.getBody().toString(), AuthCredential.class);
+			ResponseEntity<AuthCredential> responseEntity = seerbitAPIService.authenticate();
+			AuthCredential credential = responseEntity.getBody();
 
 			assertEquals(200, responseEntity.getStatusCode().value());
 			assertNotNull(credential.getAccess_token());
@@ -70,10 +71,10 @@ class SeerbitApiServiceIntegrationTests {
 			requestBody.getTransaction().setReference(faker.bothify("########??", true));
  			requestBody.getOrder().setAmount(BigDecimal.valueOf(40.00));
 			requestBody.getSource().setOperation(Operation.acct_payout);
-			ResponseEntity<?> responseEntity = seerbitAPIService.payout(requestBody);
+			ResponseEntity<Response> responseEntity = seerbitAPIService.payout(requestBody);
 
 			assertEquals(200, responseEntity.getStatusCode().value());
-			Response response = objectMapper.readValue(responseEntity.getBody().toString(), Response.class);
+			Response response = responseEntity.getBody();
 
 			assertNotNull(response);
 			assertEquals("00", response.getCode());
@@ -93,10 +94,10 @@ class SeerbitApiServiceIntegrationTests {
 			requestBody.getTransaction().setReference(faker.bothify("########??", true));
 			requestBody.getOrder().setAmount(BigDecimal.valueOf(100.00));
 			requestBody.getSource().setOperation(Operation.wallet_payout);
-			ResponseEntity<?> responseEntity = seerbitAPIService.payout(requestBody);
+			ResponseEntity<Response> responseEntity = seerbitAPIService.payout(requestBody);
 
 			assertEquals(200, responseEntity.getStatusCode().value());
-			Response response = objectMapper.readValue(responseEntity.getBody().toString(), Response.class);
+			Response response = responseEntity.getBody();
 
 			assertNotNull(response);
 			assertEquals("00", response.getCode());
@@ -115,10 +116,10 @@ class SeerbitApiServiceIntegrationTests {
 		try {
 			requestBody.getOrder().setAmount(BigDecimal.valueOf(100.00));
 			requestBody.getSource().setOperation(Operation.wallet_payout);
-			ResponseEntity<?> responseEntity = seerbitAPIService.payout(requestBody);
+			ResponseEntity<Response> responseEntity = seerbitAPIService.payout(requestBody);
 
 			assertEquals(200, responseEntity.getStatusCode().value());
-			Response response = objectMapper.readValue(responseEntity.getBody().toString(), Response.class);
+			Response response = responseEntity.getBody();
 
 			assertNotNull(response);
 			assertEquals("S14", response.getCode());
@@ -136,10 +137,10 @@ class SeerbitApiServiceIntegrationTests {
 			requestBody.getTransaction().setReference(faker.bothify("########??", true));
 			requestBody.getOrder().setAmount(BigDecimal.valueOf(30.00));
 			requestBody.getSource().setOperation(Operation.acct_payout);
-			ResponseEntity<?> responseEntity = seerbitAPIService.cashPickUp(requestBody);
+			ResponseEntity<Response> responseEntity = seerbitAPIService.cashPickUp(requestBody);
 
 			assertEquals(200, responseEntity.getStatusCode().value());
-			Response response = objectMapper.readValue(responseEntity.getBody().toString(), Response.class);
+			Response response = responseEntity.getBody();
 
 			assertNotNull(response);
 			assertEquals("00", response.getCode());

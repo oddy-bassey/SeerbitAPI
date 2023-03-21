@@ -3,6 +3,7 @@ package com.fcmb.SeerbitAPI.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fcmb.SeerbitAPI.dto.AuthCredential;
 import com.fcmb.SeerbitAPI.dto.BaseDtoEntity;
+import com.fcmb.SeerbitAPI.dto.Response;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -44,13 +45,13 @@ public class SeerbitAPIServiceImpl implements SeerbitAPIService {
         try {
             if (authCredential == null) {
                 log.info("Requesting token");
-                authCredential = objectMapper.readValue(authenticate().getBody().toString(), AuthCredential.class);
+                authCredential = authenticate().getBody();
                 authCredential.setRequested_at(System.currentTimeMillis());
             }
             long expTime = (System.currentTimeMillis() - authCredential.getRequested_at());
             if (expTime >= authCredential.getExpires_in()) {
                 log.info("Token expired, requesting new token");
-                authCredential = objectMapper.readValue(authenticate().getBody().toString(), AuthCredential.class);
+                authCredential = authenticate().getBody();
                 authCredential.setRequested_at(System.currentTimeMillis());
             }
         } catch (Exception exception) {
@@ -60,7 +61,7 @@ public class SeerbitAPIServiceImpl implements SeerbitAPIService {
     }
 
     @Override
-    public ResponseEntity<?> authenticate() {
+    public ResponseEntity<AuthCredential> authenticate() {
 
         URI uri = null;
         try {
@@ -80,11 +81,11 @@ public class SeerbitAPIServiceImpl implements SeerbitAPIService {
 
         HttpEntity<MultiValueMap<String, String>> httpEntity =  httpEntity = new HttpEntity<>(params, httpHeaders);
 
-        return restTemplate.exchange(uri, HttpMethod.POST, httpEntity, String.class);
+        return restTemplate.exchange(uri, HttpMethod.POST, httpEntity, AuthCredential.class);
     }
 
     @Override
-    public ResponseEntity<?> payout(BaseDtoEntity requestBody) {
+    public ResponseEntity<Response> payout(BaseDtoEntity requestBody) {
 
         URI uri = null;
         try {
@@ -99,11 +100,11 @@ public class SeerbitAPIServiceImpl implements SeerbitAPIService {
 
         HttpEntity<BaseDtoEntity> httpEntity = new HttpEntity<>(requestBody, httpHeaders);
 
-        return restTemplate.exchange(uri, HttpMethod.POST, httpEntity, String.class);
+        return restTemplate.exchange(uri, HttpMethod.POST, httpEntity, Response.class);
     }
 
     @Override
-    public ResponseEntity<?> cashPickUp(BaseDtoEntity requestBody) {
+    public ResponseEntity<Response> cashPickUp(BaseDtoEntity requestBody) {
 
         URI uri = null;
         try {
@@ -118,6 +119,6 @@ public class SeerbitAPIServiceImpl implements SeerbitAPIService {
 
         HttpEntity<BaseDtoEntity> httpEntity = new HttpEntity<>(requestBody, httpHeaders);
 
-        return restTemplate.exchange(uri, HttpMethod.POST, httpEntity, String.class);
+        return restTemplate.exchange(uri, HttpMethod.POST, httpEntity, Response.class);
     }
 }

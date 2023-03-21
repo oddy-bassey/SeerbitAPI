@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fcmb.SeerbitAPI.dto.Operation;
 import com.fcmb.SeerbitAPI.dto.RequestDtoEntity;
 import com.fcmb.SeerbitAPI.sample_data.SampleData;
-import com.fcmb.SeerbitAPI.service.SeerbitAPIService;
 import com.github.javafaker.Faker;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
