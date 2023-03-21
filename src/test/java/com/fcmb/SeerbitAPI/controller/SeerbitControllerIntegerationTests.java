@@ -32,8 +32,7 @@ public class SeerbitControllerIntegerationTests {
     private Faker faker;
     @Autowired
     private MockMvc mockMvc;
-    @Autowired
-    private SeerbitAPIService seerbitAPIService;
+
 
     @BeforeEach
     void setup () {

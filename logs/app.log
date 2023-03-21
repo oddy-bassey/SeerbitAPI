@@ -1899,3 +1899,17 @@ java.lang.IllegalArgumentException: Invalid character found in method name [0x16
 2023-03-21T13:06:52.430+01:00  INFO 214455 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
 2023-03-21T13:06:52.449+01:00  INFO 214455 --- [main] f.S.c.SeerbitControllerIntegerationTests : Started SeerbitControllerIntegerationTests in 1.718 seconds (process running for 2.41)
 2023-03-21T13:06:52.953+01:00  INFO 214455 --- [main] c.f.S.service.SeerbitAPIServiceImpl      : Requesting token
+2023-03-21T13:09:01.415+01:00  INFO 214872 --- [main] f.S.c.SeerbitControllerIntegerationTests : Starting SeerbitControllerIntegerationTests using Java 19 with PID 214872 (started by revoltcode in /home/revoltcode/Documents/SimplifySynergy/SeerbitAPI)
+2023-03-21T13:09:01.416+01:00  INFO 214872 --- [main] f.S.c.SeerbitControllerIntegerationTests : No active profile set, falling back to 1 default profile: "default"
+2023-03-21T13:09:02.850+01:00  INFO 214872 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2023-03-21T13:09:02.850+01:00  INFO 214872 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-03-21T13:09:02.851+01:00  INFO 214872 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2023-03-21T13:09:02.868+01:00  INFO 214872 --- [main] f.S.c.SeerbitControllerIntegerationTests : Started SeerbitControllerIntegerationTests in 1.675 seconds (process running for 2.319)
+2023-03-21T13:09:03.345+01:00  INFO 214872 --- [main] c.f.S.service.SeerbitAPIServiceImpl      : Requesting token
+2023-03-21T13:09:25.245+01:00  INFO 215112 --- [main] f.S.c.SeerbitControllerIntegerationTests : Starting SeerbitControllerIntegerationTests using Java 19 with PID 215112 (started by revoltcode in /home/revoltcode/Documents/SimplifySynergy/SeerbitAPI)
+2023-03-21T13:09:25.247+01:00  INFO 215112 --- [main] f.S.c.SeerbitControllerIntegerationTests : No active profile set, falling back to 1 default profile: "default"
+2023-03-21T13:09:26.609+01:00  INFO 215112 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2023-03-21T13:09:26.609+01:00  INFO 215112 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-03-21T13:09:26.610+01:00  INFO 215112 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2023-03-21T13:09:26.628+01:00  INFO 215112 --- [main] f.S.c.SeerbitControllerIntegerationTests : Started SeerbitControllerIntegerationTests in 1.588 seconds (process running for 2.261)
+2023-03-21T13:09:27.107+01:00  INFO 215112 --- [main] c.f.S.service.SeerbitAPIServiceImpl      : Requesting token
