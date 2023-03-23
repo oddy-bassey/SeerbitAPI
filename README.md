@@ -14,7 +14,7 @@ The application also features integration tests for both:
 - Service layer
 - REST controller layer <br>
 
-Improvements:
+Improvements and Recommendations:
 - for production code quality, more tests coverage should be employed (Unit tests inclusive)
 - proper exception handling using controller advice
 - client API credentials should rather be accessed through secrets for better security rather than in the code as properties
